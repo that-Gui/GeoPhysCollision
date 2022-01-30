@@ -21,11 +21,16 @@ class Ship {
         this.y = canvas.height / 2;
         this.speed = 0;
         this.angle = 0;
-        this.strokeColor = 'white';
+        
     }
     draw(){
-        this.ctx = ctx;
-        this.fillStyle =
+        ctx.strokeStyle = '#ededed';
+        ctx.fillStyle = '#ededed';
+        ctx.beginPath();
+        ctx.moveTo(25, 25);
+        ctx.lineTo(105, 25);
+        ctx.lineTo(25, 105);
+        ctx.fill();
     }
 };
 
@@ -45,7 +50,7 @@ class Game {
         this.intervalId = null;
     }
     start(){
-        this.ship = new Ship( bla, bla, bla, bla);
+        this.ship = new Ship();
         this.intervalId = setInterval( () => {
             this.update();
         }, 1000 / 60);
@@ -60,7 +65,7 @@ class Game {
 };
 
 /* game start */
-window.onload = () => {
+/* window.onload = () => {
     document.getElementById('startbtn').onclick = () => {
         startGame();
     };
@@ -69,4 +74,7 @@ window.onload = () => {
         const game = new Game();
         game.start();
     };
-};
+}; */
+
+const game = new Game();
+game.start();
