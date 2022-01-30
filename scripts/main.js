@@ -15,7 +15,17 @@ let lasers = [];
 /* game assets - these will be moved onto classes.js file */
 class Ship {
     constructor(){
-
+        this.game = game;
+        this.canvas = canvas;
+        this.x = canvas.width / 2;
+        this.y = canvas.height / 2;
+        this.speed = 0;
+        this.angle = 0;
+        this.strokeColor = 'white';
+    }
+    draw(){
+        this.ctx = ctx;
+        this.fillStyle =
     }
 };
 
@@ -33,6 +43,19 @@ class Game {
         this.width = canvas.width;
         this.height = canvas.height;
         this.intervalId = null;
+    }
+    start(){
+        this.ship = new Ship( bla, bla, bla, bla);
+        this.intervalId = setInterval( () => {
+            this.update();
+        }, 1000 / 60);
+    }
+    update(){
+        this.ship.draw();
+        this.createEnemies();
+    }
+    createEnemies(){
+
     }
 };
 
