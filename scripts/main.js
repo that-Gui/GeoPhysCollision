@@ -6,6 +6,7 @@ canvas.height = window.innerHeight;
 let ship;
 let speed;
 let angle;
+let radius;
 
 let squares = [];
 let octagon = [];
@@ -15,23 +16,19 @@ let lasers = [];
 /* game assets - these will be moved onto classes.js file */
 class Ship {
     constructor(){
-        this.game = game;
-        this.canvas = canvas;
+        /* this.game = game;
+        this.canvas = canvas; */
         this.x = canvas.width / 2;
         this.y = canvas.height / 2;
         this.speed = 0;
-        this.angle = 0;
-        
+        this.angle = 90 / 180 * Math.PI;
+        this.radius = 24;
     }
     draw(){
-        ctx.strokeStyle = '#ededed';
-        ctx.fillStyle = '#ededed';
-        ctx.beginPath();
-        ctx.moveTo(25, 25);
-        ctx.lineTo(105, 25);
-        ctx.lineTo(25, 105);
-        ctx.fill();
+        
     }
+        
+
 };
 
 class Squares {
