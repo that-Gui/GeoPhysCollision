@@ -1,0 +1,17 @@
+/* css reset */
+:root {
+    font-size: 16px;
+    --light: #ededed;
+    --dark: #333333;
+    --accent: #ff3300;
+    --primary: #008080;
+    --secondary: #ffaa00;
+    scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
