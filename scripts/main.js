@@ -31,11 +31,6 @@ class Ship {
     }
     draw(){
         ctx.fillStyle = '#008080';
-        /* ctx.beginPath();
-        ctx.moveTo(this.x, this.y); // this is the initial point for the static triangle
-        ctx.lineTo(this.x + 69, this.y);
-        ctx.lineTo(this.x, this.y + 69);
-        ctx.fill(); */
         ctx.beginPath(); // formula for Equilateral triangle provided by freeCodeCamp
             ctx.moveTo( // tip of the triangle
                 this.x + 1.1 * this.radius * Math.cos(this.angle),
@@ -88,13 +83,20 @@ class Squares {
         this.canvas = canvas;
         this.x = Math.floor(Math.random() * canvas.width);
         this.y = Math.floor(Math.random() * canvas.height);
+        
         this.width = Math.floor(Math.random() * 300);
         this.height = Math.floor(Math.random() * 300);
         
         this.speed = 0.3;
-        this.angle = 90 / 180 * Math.PI;
-        this.radius = 32;
-        this.rotation = 0;
+        this.angle = Math.floor(Math.random()* 360);
+        
+        this.radius;
+        
+    }
+    update(){
+        let radians = this.angle / Math.PI * 180;
+        this.x += Math.cos(radians) * this.speed;
+        this.y += Math.sin(radians) * this.speed;
     }
     draw(){
         ctx.fillStyle = '#ededed';
