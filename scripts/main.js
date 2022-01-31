@@ -3,15 +3,16 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-let ship;
+
 let speed;
+let rocketFuel;
 //let angle = 90 / 180 * Math.PI; // this is used to convert an angle number into RADIANS
 let radius;
-
-let squares = [];
-let octagon = [];
-let pentagon = [];
-let lasers = [];
+//enemies
+const squares = [];
+const octagon = [];
+const pentagon = [];
+const lasers = [];
 
 /* game assets - these will be moved onto classes.js file */
 class Ship {
@@ -29,7 +30,6 @@ class Ship {
         this.rocketFuelY = 0;
     }
     draw(){
-        ctx.strokeStyle = '#008080';
         ctx.fillStyle = '#008080';
         /* ctx.beginPath();
         ctx.moveTo(this.x, this.y); // this is the initial point for the static triangle
@@ -51,7 +51,6 @@ class Ship {
             );
             ctx.closePath();
             ctx.fill();
-            //ctx.stroke();
     }
     rotate() {
         this.angle += this.rotation;
@@ -79,7 +78,6 @@ class Ship {
             );
             ctx.closePath();
             ctx.fill();
-           
         }
     }
 };
@@ -114,7 +112,6 @@ class Game {
         this.ship.draw();
         this.ship.update();
         this.createEnemies();
-        
         
         
         if (this.ship.x < 0 - this.ship.radius) {
