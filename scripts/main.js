@@ -25,7 +25,12 @@ class Ship {
         this.radius = 24;
     }
     draw(){
-        
+        ctx.fillStyle = '#008080';
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x + 69, this.y);
+        ctx.lineTo(this.x, this.y + 69);
+        ctx.fill();
     }
         
 
