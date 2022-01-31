@@ -23,7 +23,7 @@ class Ship {
         this.speed = 0;
         this.angle = 90 / 180 * Math.PI;
         this.radius = 32;
-        this.rotation = rotation;
+        this.rotation = 0;
         this.velocityX = 0;
         this.velocityY = 0;
     }
@@ -66,6 +66,8 @@ class Squares {
     }
 };
 
+
+
 /* game logic */
 class Game {
     constructor(){
@@ -77,16 +79,19 @@ class Game {
     }
     start(){
         this.ship = new Ship();
+        this.keyboardEvent();
         this.intervalId = setInterval( () => {
             this.update();
         }, 1000 / 60);
     }
     update(){
-        /* this.canvas = canvas; */
+        this.ctx.clearRect(0, 0, canvas.width, canvas.height);
         this.ship.draw();
         this.createEnemies();
-        controls();
-        if (ship.x < 0 - ship.radius) {
+        
+        
+        
+        /* if (ship.x < 0 - ship.radius) {
             ship.x = canvas.width + ship.radius;
         } else if (ship.x > canvas.width + ship.radius) {
             ship.x = 0 - ship.radius;
@@ -95,24 +100,25 @@ class Game {
             ship.y = canvas.height + ship.radius;
         } else if (ship.y > canvas.height + ship.radius) {
             ship.y = 0 - ship.radius;
-        }
+        } */
     }
     createEnemies(){
         const squares = new Squares();
     }
+    keyboardEvent(){
+        window.addEventListener('keydown', (e) => {
+            switch (e.code) {
+                case 'ArrowRight': this.ship.angle -= 0.3;
+                    break;
+                case 'ArrowLeft': this.ship.angle += 0.3;
+                    break;
+                case 'ArrowUp': this.ship.y -= 10;
+                    break;
+                
+            }
+        })
+    }
 };
-
-function controls() {
-    window.addEventListener('keydown', (e) => {
-        switch (e.code) {
-            case arrowRight: ship.rotation += 10;
-                break;
-            case arrowLeft: ship.rotation -= 10;
-                break;
-        
-        }
-    })
-}
 
 /* game start */
 /* window.onload = () => {
