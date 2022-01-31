@@ -23,6 +23,9 @@ class Ship {
         this.speed = 0;
         this.angle = 90 / 180 * Math.PI;
         this.radius = 32;
+        this.rotation = rotation;
+        this.velocityX = 0;
+        this.velocityY = 0;
     }
     draw(){
         ctx.strokeStyle = '#008080';
@@ -49,8 +52,12 @@ class Ship {
             ctx.fill();
             //ctx.stroke();
     }
-        
+    rotate() {
+        this.angle += this.rotation;
+    }
+    update(){
 
+    }
 };
 
 class Squares {
@@ -78,11 +85,34 @@ class Game {
         /* this.canvas = canvas; */
         this.ship.draw();
         this.createEnemies();
+        controls();
+        if (ship.x < 0 - ship.radius) {
+            ship.x = canvas.width + ship.radius;
+        } else if (ship.x > canvas.width + ship.radius) {
+            ship.x = 0 - ship.radius;
+        }
+        if (ship.y < 0 - ship.radius) {
+            ship.y = canvas.height + ship.radius;
+        } else if (ship.y > canvas.height + ship.radius) {
+            ship.y = 0 - ship.radius;
+        }
     }
     createEnemies(){
         const squares = new Squares();
     }
 };
+
+function controls() {
+    window.addEventListener('keydown', (e) => {
+        switch (e.code) {
+            case arrowRight: ship.rotation += 10;
+                break;
+            case arrowLeft: ship.rotation -= 10;
+                break;
+        
+        }
+    })
+}
 
 /* game start */
 /* window.onload = () => {
