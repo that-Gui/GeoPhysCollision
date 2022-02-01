@@ -75,6 +75,16 @@ class Ship {
             ctx.closePath();
             ctx.fill();
         }
+        if (this.x < 0 - this.radius) {
+            this.x = canvas.width + this.radius;
+        } else if (this.x > canvas.width + this.radius) {
+            this.x = 0 - this.radius;
+        }
+        if (this.y < 0 - this.radius) {
+            this.y = canvas.height + this.radius;
+        } else if (this.y > canvas.height + this.radius) {
+            this.y = 0 - this.radius;
+        }
     }
 };
 
@@ -85,15 +95,15 @@ class Squares {
         this.x = Math.floor(Math.random() * canvas.width);
         this.y = Math.floor(Math.random() * canvas.height);
         
-        this.width = Math.floor(Math.random() * 99) + 1;
-        this.height = Math.floor(Math.random() * 99) + 1;
+        this.width = Math.floor(Math.random() * 69) + 1;
+        this.height = Math.floor(Math.random() * 69) + 1;
         
-        this.speed = 0.3;
+        this.speed = 0.1;
         this.angle = (Math.floor(Math.random()* 359) + 1) / Math.PI * 180;
         this.rocketFuel = true;
         this.rocketFuelX = 0;
         this.rocketFuelY = 0;
-        this.radius;
+        
     }  
     update(){
         this.x += this.rocketFuelX;
@@ -101,6 +111,17 @@ class Squares {
         if(this.rocketFuel){
         this.rocketFuelX += this.speed * Math.cos(this.angle);
         this.rocketFuelY -= this.speed * Math.sin(this.angle);
+        }
+
+        if (this.x < 0 - this.width) {
+            this.x = canvas.width + this.width;
+        } else if (this.x > canvas.width + this.width) {
+            this.x = 0 - this.width;
+        }
+        if (this.y < 0 - this.height) {
+            this.y = canvas.height + this.height;
+        } else if (this.y > canvas.height + this.height) {
+            this.y = 0 - this.height;
         }
     }
     draw(){
@@ -144,7 +165,7 @@ class Game {
         
         this.frameCounter ++;
         console.log('frameCounter');
-        if (this.ship.x < 0 - this.ship.radius) {
+        /* if (this.ship.x < 0 - this.ship.radius) {
             this.ship.x = canvas.width + this.ship.radius;
         } else if (this.ship.x > canvas.width + this.ship.radius) {
             this.ship.x = 0 - this.ship.radius;
@@ -153,10 +174,10 @@ class Game {
             this.ship.y = canvas.height + this.ship.radius;
         } else if (this.ship.y > canvas.height + this.ship.radius) {
             this.ship.y = 0 - this.ship.radius;
-        }
+        } */
     }
     createEnemies(){
-        if (this.frameCounter % 300 === 0) {
+        if (this.frameCounter % 690 === 0) {
             squaresArray.push(new Squares());
             console.log('square');
         }
