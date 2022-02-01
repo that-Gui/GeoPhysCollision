@@ -9,6 +9,7 @@ let rocketFuel;
 //let angle = 90 / 180 * Math.PI; // this is used to convert an angle number into RADIANS
 let radius;
 //enemies
+
 const squaresArray = [];
 const octagonArray = [];
 const pentagonArray = [];
@@ -84,19 +85,23 @@ class Squares {
         this.x = Math.floor(Math.random() * canvas.width);
         this.y = Math.floor(Math.random() * canvas.height);
         
-        this.width = Math.floor(Math.random() * 300);
-        this.height = Math.floor(Math.random() * 300);
+        this.width = Math.floor(Math.random() * 99) + 1;
+        this.height = Math.floor(Math.random() * 99) + 1;
         
         this.speed = 0.3;
-        this.angle = Math.floor(Math.random()* 360);
-        
+        this.angle = (Math.floor(Math.random()* 359) + 1) / Math.PI * 180;
+        this.rocketFuel = true;
+        this.rocketFuelX = 0;
+        this.rocketFuelY = 0;
         this.radius;
-        
-    }
+    }  
     update(){
-        let radians = this.angle / Math.PI * 180;
-        this.x += Math.cos(radians) * this.speed;
-        this.y += Math.sin(radians) * this.speed;
+        this.x += this.rocketFuelX;
+        this.y += this.rocketFuelY;
+        if(this.rocketFuel){
+        this.rocketFuelX += this.speed * Math.cos(this.angle);
+        this.rocketFuelY -= this.speed * Math.sin(this.angle);
+        }
     }
     draw(){
         ctx.fillStyle = '#ededed';
@@ -120,7 +125,6 @@ class Game {
     start(){
         this.ship = new Ship();
         this.keyboardEvent();
-        this.createEnemies();
         this.gameOver();
         this.intervalId = setInterval( () => {
             this.update();
@@ -130,12 +134,12 @@ class Game {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
         this.ship.draw();
         this.ship.update();
-        
         this.createEnemies();
-       /*  this.squaresArray.forEach((squares) => {
-            squares.[i]++;
-            squares.draw();
-        }); */
+      
+        squaresArray.forEach((square) => {
+            square.draw();
+            square.update();
+          });
         
         
         this.frameCounter ++;
@@ -152,11 +156,14 @@ class Game {
         }
     }
     createEnemies(){
-        const squares = new Squares();
-        if (this.frames % 300 === 0) {
-            this.squaresArray.push(squares(this));
-          }
+        if (this.frameCounter % 300 === 0) {
+            squaresArray.push(new Squares());
+            console.log('square');
+        }
+        
     }
+    
+
     keyboardEvent(){
         window.addEventListener('keydown', (e) => {
             switch (e.code) {
