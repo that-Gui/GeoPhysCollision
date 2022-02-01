@@ -98,20 +98,16 @@ class Squares {
         this.width = Math.floor(Math.random() * 69) + 1;
         this.height = Math.floor(Math.random() * 69) + 1;
         
-        this.speed = 0.1;
+        this.speed = 3;
         this.angle = (Math.floor(Math.random()* 359) + 1) / Math.PI * 180;
         this.rocketFuel = true;
-        this.rocketFuelX = 0;
-        this.rocketFuelY = 0;
+        this.rocketFuelX = this.speed * Math.cos(this.angle);
+        this.rocketFuelY = this.speed * Math.sin(this.angle);
         
     }  
     update(){
         this.x += this.rocketFuelX;
         this.y += this.rocketFuelY;
-        if(this.rocketFuel){
-        this.rocketFuelX += this.speed * Math.cos(this.angle);
-        this.rocketFuelY -= this.speed * Math.sin(this.angle);
-        }
 
         if (this.x < 0 - this.width) {
             this.x = canvas.width + this.width;
@@ -146,7 +142,6 @@ class Game {
     start(){
         this.ship = new Ship();
         this.keyboardEvent();
-        this.gameOver();
         this.intervalId = setInterval( () => {
             this.update();
         }, 1000 / 60);
@@ -200,14 +195,15 @@ class Game {
         window.addEventListener('keyup', (e) => {
             switch (e.code) {
                 case 'ArrowUp': this.ship.rocketFuel = false;
-            console.log('up');
                     break;
                 
             }
         })
     }
     gameOver(){
-
+        if(this.ship.radius ){
+            clearInterval(this.intervalId);
+        }
     }
 };
 
