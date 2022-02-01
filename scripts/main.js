@@ -8,8 +8,8 @@ let speed;
 let rocketFuel;
 //let angle = 90 / 180 * Math.PI; // this is used to convert an angle number into RADIANS
 let radius;
-//enemies
 
+//enemies
 const squaresArray = [];
 const octagonArray = [];
 const pentagonArray = [];
@@ -120,7 +120,15 @@ class Squares {
             this.y = 0 - this.height;
         }
     }
+
+    checkOnTop(){
+        if (!(this.game.ship.x + 32 < this.x || this.game.ship.x > this.x + this.width || this.game.ship.y + 32 < this.y || this.game.ship.y > this.y + this.height)){ 
+            this.x += 50;
+         }
+        }
+        
     draw(){
+
         ctx.fillStyle = '#ededed';
         ctx.fillRect(this.x, this.y, this.width, this.height);
         console.log('newsquare');
@@ -170,10 +178,12 @@ class Game {
         } else if (this.ship.y > canvas.height + this.ship.radius) {
             this.ship.y = 0 - this.ship.radius;
         } */
+        this.gameOver();
     }
     createEnemies(){
         if (this.frameCounter % 690 === 0) {
             squaresArray.push(new Squares());
+            squaresArray[squaresArray.length - 1].checkOnTop();
             console.log('square');
         }
         
@@ -201,9 +211,18 @@ class Game {
         })
     }
     gameOver(){
-        if(this.ship.radius ){
+    /* the x position of the ball is greater than the x position of the brick.
+    The x position of the ball is less than the x position of the brick plus its width.
+    The y position of the ball is greater than the y position of the brick.
+    The y position of the ball is less than the y position of the brick plus its height. */
+    squaresArray.forEach((square) => {
+        if (!(this.ship.x + 32 < square.x || this.ship.x > square.x + square.width || this.ship.y + 32 < square.y || this.ship.y > square.y + square.height)){ 
+            console.log('impact');
+            clearInterval(this.intervalId); }
+        })
+        /* if(this.ship.radius ){
             clearInterval(this.intervalId);
-        }
+        } */
     }
 };
 
