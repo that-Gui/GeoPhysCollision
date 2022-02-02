@@ -15,7 +15,7 @@ class Ship {
     }
     draw(){
         ctx.shadowColor = '#008080';
-        ctx.shadowBlur = '5';
+        ctx.shadowBlur = '3';
         ctx.strokeStyle = '0';
         ctx.fillStyle = '#008080';
         ctx.beginPath(); // formula for Equilateral triangle provided by freeCodeCamp

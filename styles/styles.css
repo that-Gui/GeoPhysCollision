@@ -4,7 +4,7 @@
     font-size: 16px;
     --light: #ededed;
     --dark: #333333;
-    --accent: #ff3300;
+    --accent: #FF008E;
     --primary: #008080;
     --secondary: #ffaa00;
     scroll-behavior: smooth;
@@ -14,7 +14,7 @@
     border: 0;
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
 }
 
 /* landing page styling */
@@ -23,17 +23,34 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+background-color: var(--dark);
+height: 100vh;
 }
 
-.title h1{
-    margin: 8rem;
-    padding: 1rem;
-    font-size: 8rem;
+.btn {
+    font-size: 6rem;
+    text-decoration: none;
+    color: var(--accent);
+    border: var(--accent) 0.125em solid;
+    padding: 0.25em 1em;
+    border-radius: 0.25em;
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+    box-shadow: inset 0 0 0.5em 0 var(--accent), 0 0 0.5em 0 var(--accent);
+  }
+
+.btn:hover, .btn:focus {
+    color: var(--light);
+    text-shadow: none;
 }
 
-.start{
-    margin: 8rem;
-    padding: 1rem;
+.inst{
+    text-align: center;
+    margin-top: 5rem;
+    color: var(--light);
+    font-size: 1.5rem;
+}
+.inst span{
+    color: var(--secondary);
 }
 
 /* canvas styling */

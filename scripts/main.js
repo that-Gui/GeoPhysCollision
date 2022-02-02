@@ -231,7 +231,14 @@ class Game {
     squaresArray.forEach((square) => {
         if (!(this.ship.x + 32 < square.x || this.ship.x > square.x + square.width || this.ship.y + 32 < square.y || this.ship.y > square.y + square.height)){ 
             console.log('impact');
-            clearInterval(this.intervalId); }
+            
+            this.ctx.strokeStyle = 'rgba(0,0,0,0)';
+            this.ctx.font = '128px serif';
+            this.ctx.fillText('GameOver', canvas.width / 2, canvas.height / 2);
+            
+            clearInterval(this.intervalId);
+            
+        }
         })
         
     }
