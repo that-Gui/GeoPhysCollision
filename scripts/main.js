@@ -16,7 +16,7 @@ const pentagonArray = [];
 const lasersArray = [];
 
 /* game assets - these will be moved onto classes.js file */
-class Ship {
+/* class Ship {
     constructor(){
         this.game = game;
         this.canvas = canvas;
@@ -31,6 +31,9 @@ class Ship {
         this.rocketFuelY = 0;
     }
     draw(){
+        ctx.shadowColor = '#008080';
+        ctx.shadowBlur = '5';
+        ctx.strokeStyle = '0';
         ctx.fillStyle = '#008080';
         ctx.beginPath(); // formula for Equilateral triangle provided by freeCodeCamp
             ctx.moveTo( // tip of the triangle
@@ -59,6 +62,9 @@ class Ship {
             this.rocketFuelY -= this.speed * Math.sin(this.angle);
             
             ctx.fillStyle = '#ffaa00';
+            ctx.shadowColor = '#ffaa00';
+            ctx.shadowBlur = '8';
+            ctx.strokeStyle = '0';
             ctx.beginPath();
             ctx.moveTo( 
                 this.x - this.radius * (0.6 * Math.cos(this.angle) + 0.5 * Math.sin(this.angle)),
@@ -87,8 +93,8 @@ class Ship {
         }
     }
 };
-
-class Squares {
+ */
+/* class Squares {
     constructor(){
         this.game = game;
         this.canvas = canvas;
@@ -120,20 +126,22 @@ class Squares {
             this.y = 0 - this.height;
         }
     }
-
     checkOnTop(){
         if (!(this.game.ship.x + 32 < this.x || this.game.ship.x > this.x + this.width || this.game.ship.y + 32 < this.y || this.game.ship.y > this.y + this.height)){ 
             this.x += 50;
          }
-        }
-        
+    }
     draw(){
-
+        ctx.shadowColor = '#FF008E';
+        ctx.shadowBlur = 8;
+        ctx.strokeStyle = '#FF008E';
+        ctx.strokeRect(this.x, this.y, this.width, this.height);
+        #FF008E
         ctx.fillStyle = '#ededed';
         ctx.fillRect(this.x, this.y, this.width, this.height);
         console.log('newsquare');
     }
-};
+}; */
 
 
 
@@ -148,7 +156,7 @@ class Game {
         this.frameCounter = 0;
     }
     start(){
-        this.ship = new Ship();
+        this.ship = new Ship(this);
         this.keyboardEvent();
         this.intervalId = setInterval( () => {
             this.update();
@@ -182,14 +190,12 @@ class Game {
     }
     createEnemies(){
         if (this.frameCounter % 690 === 0) {
-            squaresArray.push(new Squares());
+            squaresArray.push(new Squares(this));
             squaresArray[squaresArray.length - 1].checkOnTop();
             console.log('square');
         }
         
     }
-    
-
     keyboardEvent(){
         window.addEventListener('keydown', (e) => {
             switch (e.code) {
@@ -210,19 +216,24 @@ class Game {
             }
         })
     }
+    /* shapeCollision(){
+        squaresArray.forEach((square) => {
+            for (let index = 0; index < squaresArray.length; index++) {
+                if (!(this.ship.x + 32 < square.x || this.ship.x > square.x + square.width || this.ship.y + 32 < square.y || this.ship.y > square.y + square.height)){ 
+                    console.log('impact');
+                    clearInterval(this.intervalId); }
+                
+            }
+            
+            })
+    } */
     gameOver(){
-    /* the x position of the ball is greater than the x position of the brick.
-    The x position of the ball is less than the x position of the brick plus its width.
-    The y position of the ball is greater than the y position of the brick.
-    The y position of the ball is less than the y position of the brick plus its height. */
     squaresArray.forEach((square) => {
         if (!(this.ship.x + 32 < square.x || this.ship.x > square.x + square.width || this.ship.y + 32 < square.y || this.ship.y > square.y + square.height)){ 
             console.log('impact');
             clearInterval(this.intervalId); }
         })
-        /* if(this.ship.radius ){
-            clearInterval(this.intervalId);
-        } */
+        
     }
 };
 
