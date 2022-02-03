@@ -168,24 +168,25 @@ class Game {
         this.ship.update();
         this.createEnemies();
       
-        squaresArray.forEach((square) => {
+        squaresArray.forEach((square, i) => {
             square.draw();
             square.update();
+        
+                    /* for (let x = 0; x < squaresArray.length; x++) {
+                        if (square.x + square.width < squaresArray[x].x || square.x > squaresArray[x].x + squaresArray[x].width || square.y + square.h < squaresArray[x].y || square.y > squaresArray[x].y + squaresArray[x].height && i !== x){
+                            console.log('shapecollision');
+                            squaresArray[x].speed = -squaresArray[x].speed;
+                            square.speed = -square.speed;
+                    } */
+               
+        
+                }
           });
         
-        //this.shapeCollision();
         this.frameCounter ++;
-        console.log('frameCounter');
-        /* if (this.ship.x < 0 - this.ship.radius) {
-            this.ship.x = canvas.width + this.ship.radius;
-        } else if (this.ship.x > canvas.width + this.ship.radius) {
-            this.ship.x = 0 - this.ship.radius;
-        }
-        if (this.ship.y < 0 - this.ship.radius) {
-            this.ship.y = canvas.height + this.ship.radius;
-        } else if (this.ship.y > canvas.height + this.ship.radius) {
-            this.ship.y = 0 - this.ship.radius;
-        } */
+        
+        //this.shapeCollision();
+        
         this.gameOver();
     }
     createEnemies(){
@@ -216,19 +217,16 @@ class Game {
             }
         })
     }
-    /* shapeCollision(){
-        for (let i = 0; i < squaresArray.length; i++) {
+ /*    shapeCollision(){
+
+        squaresArray.forEach((e) => {
             for (let x = 0; x < squaresArray.length; x++) {
-                if (square[i].x + (square[i].width / 2) === square[x].x + (square[x].width / 2) && square[i].y + (square[i].height / 2) === square[x].y + (square[x].height / 2) && i != x){ 
-                    
-                    
-                    square[i].speed = -square[i].speed;
+                if (e.x || e.y === square[x].x || square[x].y){
                     square[x].speed = -square[x].speed;
-                    
+                   e.speed = -e.speed;
                 }
             }
-            
-        }
+        })
     } */
     gameOver(){
     squaresArray.forEach((square) => {
