@@ -1,7 +1,8 @@
-
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 /* css reset */
 :root {
     font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
     --light: #ededed;
     --dark: #333333;
     --accent: #FF008E;
@@ -30,12 +31,12 @@ height: 100vh;
 .btn {
     font-size: 6rem;
     text-decoration: none;
-    color: var(--accent);
-    border: var(--accent) 0.125em solid;
+    color: var(--primary);
+    border: var(--primary) 0.125em solid;
     padding: 0.25em 1em;
     border-radius: 0.25em;
     text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
-    box-shadow: inset 0 0 0.5em 0 var(--accent), 0 0 0.5em 0 var(--accent);
+    box-shadow: inset 0 0 0.5em 0 var(--primary), 0 0 0.5em 0 var(--primary);
   }
 
 .btn:hover, .btn:focus {

@@ -232,9 +232,13 @@ class Game {
         if (!(this.ship.x + 32 < square.x || this.ship.x > square.x + square.width || this.ship.y + 32 < square.y || this.ship.y > square.y + square.height)){ 
             console.log('impact');
             
-            this.ctx.strokeStyle = 'rgba(0,0,0,0)';
-            this.ctx.font = '128px serif';
-            this.ctx.fillText('GameOver', canvas.width / 2, canvas.height / 2);
+            ctx.fillStyle = 'white';
+            ctx.shadowColor = 'black';
+            ctx.shadowBlur = '13';
+            ctx.strokeStyle = 'white';
+            this.ctx.font = '144px JetBrains Mono';
+            this.ctx.fillText('GameOver', canvas.width / 4, canvas.height / 2);
+            
             
             clearInterval(this.intervalId);
             
