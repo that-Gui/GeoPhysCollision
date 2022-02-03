@@ -180,7 +180,7 @@ class Game {
                     } */
                
         
-                })
+        })
           
         
         this.frameCounter ++;
