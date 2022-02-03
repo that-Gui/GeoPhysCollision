@@ -1,4 +1,4 @@
-//
+//file separation to meet exercise requirements
 class Squares {
     constructor(game){
         this.game = game;
@@ -11,7 +11,7 @@ class Squares {
         
         this.speed = 3;
         this.angle = (Math.floor(Math.random()* 359) + 1) / Math.PI * 180;
-        this.rocketFuel = true;
+        /* this.rocketFuel = true; */
         this.rocketFuelX = this.speed * Math.cos(this.angle);
         this.rocketFuelY = this.speed * Math.sin(this.angle);
         

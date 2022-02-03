@@ -25,6 +25,7 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 background-color: var(--dark);
+/* background-image: url(https://www.nasa.gov/images/content/52706main_hstorion_lg.jpg); */
 height: 100vh;
 }
 

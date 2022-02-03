@@ -18,7 +18,7 @@ class Ship {
         ctx.shadowBlur = '3';
         ctx.strokeStyle = '0';
         ctx.fillStyle = '#008080';
-        ctx.beginPath(); // formula for Equilateral triangle provided by freeCodeCamp
+        ctx.beginPath();
             ctx.moveTo( // tip of the triangle
                 this.x + 1.1 * this.radius * Math.cos(this.angle),
                 this.y - 1.1 * this.radius * Math.sin(this.angle)
